@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,10 +69,16 @@ public class pokedexController {
 	}
 	
 	// Put
-		@PutMapping("/update/{name}") // localhost:8080/user/update/name
+		@PutMapping("/update/{name}") // localhost:8080/update/name
 		public ResponseEntity<pokedex>update(@PathVariable String name, @RequestBody pokedex pokemon) {
 			return new ResponseEntity<pokedex>(service.update(name, pokemon),HttpStatus.CREATED);
 				
-		}
+	}
+	// Delete//using a turnary if
+		@DeleteMapping("/delete/{id}") //localhost:8080/delete/id
+		public ResponseEntity<Boolean> delete(@PathVariable long id) {
+			return (service.delete(id))? new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT) : 
+				new ResponseEntity<Boolean>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	
 }

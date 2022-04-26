@@ -68,4 +68,11 @@ public class pokedexService {
 			return repo.saveAndFlush(existing);
 		}
 		
+	//Delete a pokemon by ID
+		public boolean delete(long id) {
+			repo.deleteById(id);
+			return !repo.existsById(id);
+		}
+
+		
 }
