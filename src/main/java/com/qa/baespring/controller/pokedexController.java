@@ -42,6 +42,10 @@ public class pokedexController {
 		return new ResponseEntity<pokedex>(service.getByName(name), HttpStatus.OK);
 		}
 	
+	@GetMapping("getByType/{type}") // localhost:8080/getByType/type
+	public ResponseEntity<List<pokedex>> getByType(@PathVariable String type) {
+		return new ResponseEntity<List<pokedex>>(service.getByType(type), HttpStatus.OK);
+	}
 	
 	
 }

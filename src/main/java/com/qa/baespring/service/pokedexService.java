@@ -31,6 +31,11 @@ public class pokedexService {
 		public pokedex getByName(String name) {
 			return repo.findByName(name).get();
 		}
+		
+	//get by type
+		public List<pokedex> getByType(String type) {
+			return repo.findByType(type);
+		}
 
 		
 		
