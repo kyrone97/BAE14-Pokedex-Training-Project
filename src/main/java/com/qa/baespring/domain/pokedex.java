@@ -35,7 +35,32 @@ public class pokedex {
 	@Column(nullable = false, name = "weakness")
 	private String weakness;
 
-	// Default Constructor
-	public User() {}
+	
 
+	public pokedex(long id, String name, String moves, String type, String weakness) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.moves = moves;
+		this.type = type;
+		this.weakness = weakness;
+	}
+
+	public pokedex(String name, String moves, String type, String weakness) {
+		super();
+		this.name = name;
+		this.moves = moves;
+		this.type = type;
+		this.weakness = weakness;
+	}
+	
+	// Default Constructor
+	public pokedex() {
+		super();
+	}
+
+	
+	
+	
+	
 }
