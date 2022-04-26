@@ -1,5 +1,7 @@
 package com.qa.baespring.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.qa.baespring.domain.pokedex;
@@ -20,7 +22,10 @@ public class pokedexService {
 			return repo.findById(id).get();
 		}
 	
-	
+	//get ALL pokemon
+		public List<pokedex>getAll(){
+			return repo.findAll();
+		}
 	
 	
 

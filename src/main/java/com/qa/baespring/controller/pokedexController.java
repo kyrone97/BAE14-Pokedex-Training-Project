@@ -1,5 +1,7 @@
 package com.qa.baespring.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +27,14 @@ public class pokedexController {
 	@GetMapping("/getById/{id}") // localhost:8080/getById/
 	public ResponseEntity<pokedex> getById (@PathVariable long id) {
 		return new ResponseEntity<pokedex>(service.getById(id), HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/getAll") // localhost:8080/getAll
+	public ResponseEntity<List<pokedex>>getAll() {
+		return new ResponseEntity<List<pokedex>>(service.getAll(),HttpStatus.OK);
+		
+		
 	}
 	
 	
