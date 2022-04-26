@@ -36,7 +36,6 @@ public class pokedexController {
 	}
 	
 	//Get by name(get one pokemon by name)
-	
 	@GetMapping("getByName/{name}") // localhost:8080/getByName/name
 	public ResponseEntity<pokedex> getByName(@PathVariable String name) {
 		return new ResponseEntity<pokedex>(service.getByName(name), HttpStatus.OK);
@@ -45,6 +44,11 @@ public class pokedexController {
 	@GetMapping("getByType/{type}") // localhost:8080/getByType/type
 	public ResponseEntity<List<pokedex>> getByType(@PathVariable String type) {
 		return new ResponseEntity<List<pokedex>>(service.getByType(type), HttpStatus.OK);
+	}
+
+	@GetMapping("getByWeakness/{weakness}") // localhost:8080/getByWeakness/weakness
+	public ResponseEntity<List<pokedex>> getByWeakness(@PathVariable String weakness) {
+		return new ResponseEntity<List<pokedex>>(service.getByWeakness(weakness), HttpStatus.OK);
 	}
 	
 	

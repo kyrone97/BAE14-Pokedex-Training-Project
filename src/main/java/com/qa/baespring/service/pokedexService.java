@@ -38,7 +38,10 @@ public class pokedexService {
 		}
 
 		
-		
+	//get by type
+		public List<pokedex> getByWeakness(String weakness) {
+			return repo.findByWeakness(weakness);
+		}
 		
 		
 }

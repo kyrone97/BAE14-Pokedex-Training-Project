@@ -13,12 +13,17 @@ import com.qa.baespring.domain.pokedex;
 @Repository
 public interface pokedexRepo extends JpaRepository <pokedex, Long > {
 	
+	//get by name query
 	@Query(value = "SELECT * FROM pokedex WHERE name = ?1", nativeQuery=true)
 	Optional<pokedex> findByName(String name);
 	
-	// get by age query
+	// get by type query
 	// don't need an optional if using a list 
 	@Query(value = "SELECT * FROM pokedex WHERE type = ?1", nativeQuery=true)
 	List<pokedex> findByType(String type);
 
+	@Query(value = "SELECT * FROM pokedex WHERE weakness = ?1", nativeQuery=true)
+	List<pokedex> findByWeakness(String weakness);
+
+	
 }
