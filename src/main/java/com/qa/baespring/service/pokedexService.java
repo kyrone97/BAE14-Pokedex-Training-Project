@@ -36,8 +36,12 @@ public class pokedexService {
 		public List<pokedex> getByType(String type) {
 			return repo.findByType(type);
 		}
-
 		
+	//get by moves
+		public List<pokedex> getByMoves(String moves) {
+			return repo.findByMoves(moves);
+		}
+	
 	//get by type
 		public List<pokedex> getByWeakness(String weakness) {
 			return repo.findByWeakness(weakness);

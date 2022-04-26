@@ -24,6 +24,9 @@ public interface pokedexRepo extends JpaRepository <pokedex, Long > {
 
 	@Query(value = "SELECT * FROM pokedex WHERE weakness = ?1", nativeQuery=true)
 	List<pokedex> findByWeakness(String weakness);
+	
+	@Query(value = "SELECT * FROM pokedex WHERE moves = ?1", nativeQuery=true)
+	List<pokedex> findByMoves(String moves);
 
 	
 }

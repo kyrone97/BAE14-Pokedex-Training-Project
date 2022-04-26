@@ -55,6 +55,11 @@ public class pokedexController {
 		return new ResponseEntity<List<pokedex>>(service.getByWeakness(weakness), HttpStatus.OK);
 	}
 	
+	@GetMapping("getByMoves/{moves}") // localhost:8080/getByMoves/moves
+	public ResponseEntity<List<pokedex>> getByMoves(@PathVariable String moves) {
+		return new ResponseEntity<List<pokedex>>(service.getByMoves(moves), HttpStatus.OK);
+	}
+	
 	// Post
 	@PostMapping("/create") // localhost:8080/create
 	public ResponseEntity<pokedex>create(@RequestBody pokedex pokemon) {
