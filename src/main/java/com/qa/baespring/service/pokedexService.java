@@ -43,5 +43,9 @@ public class pokedexService {
 			return repo.findByWeakness(weakness);
 		}
 		
+	//creating a new pokemon entry
+		public pokedex create(pokedex pokemon) {
+			return repo.saveAndFlush(pokemon);
+		}
 		
 }
