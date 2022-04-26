@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,6 +58,20 @@ public class pokedexController {
 	@PostMapping("/create") // localhost:8080/create
 	public ResponseEntity<pokedex>create(@RequestBody pokedex pokemon) {
 		return new ResponseEntity<pokedex>(service.create(pokemon), HttpStatus.CREATED);
+	}
+	
+	// Put
+	@PutMapping("/update/{id}") // localhost:8080/user/update/id
+	public ResponseEntity<pokedex>update(@PathVariable long id, @RequestBody pokedex pokemon) {
+		return new ResponseEntity<pokedex>(service.update(id, pokemon),HttpStatus.CREATED);
+			
+	}
+	
+	// Put
+		@PutMapping("/update/{name}") // localhost:8080/user/update/name
+		public ResponseEntity<pokedex>update(@PathVariable String name, @RequestBody pokedex pokemon) {
+			return new ResponseEntity<pokedex>(service.update(name, pokemon),HttpStatus.CREATED);
+				
 		}
 	
 }

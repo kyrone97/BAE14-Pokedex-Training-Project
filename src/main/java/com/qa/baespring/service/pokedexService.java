@@ -48,4 +48,24 @@ public class pokedexService {
 			return repo.saveAndFlush(pokemon);
 		}
 		
+	//update a pokemon by id
+		public pokedex update(long id, pokedex pokemon) {
+			pokedex existing = repo.findById(id).get(); //orElseThrow(UserNotUpdatedException::new); // get the existing user
+			existing.setName(pokemon.getName()); // change the pokemon name to new pokemon name
+			existing.setType(pokemon.getType()); // change existing pokemon type to new pokemon type
+			existing.setWeakness(pokemon.getWeakness()); // change existing pokemon weakness to new pokemon weakness
+			existing.setMoves(pokemon.getMoves()); //
+			return repo.saveAndFlush(existing);
+		}
+		
+	//update a pokemon
+		public pokedex update(String name, pokedex pokemon) {
+			pokedex existing = repo.findByName(name).get(); //orElseThrow(UserNotUpdatedException::new); // get the existing user
+			existing.setName(pokemon.getName()); // change the pokemon name to new pokemon name
+			existing.setType(pokemon.getType()); // change existing pokemon type to new pokemon type
+			existing.setWeakness(pokemon.getWeakness()); // change existing pokemon weakness to new pokemon weakness
+			existing.setMoves(pokemon.getMoves()); //
+			return repo.saveAndFlush(existing);
+		}
+		
 }
