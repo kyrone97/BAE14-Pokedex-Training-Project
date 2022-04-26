@@ -27,7 +27,10 @@ public class pokedexService {
 			return repo.findAll();
 		}
 	
-	
+	//get by name
+		public pokedex getByName(String name) {
+			return repo.findByName(name).get();
+		}
 
 		
 		

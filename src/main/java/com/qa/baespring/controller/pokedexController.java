@@ -32,10 +32,15 @@ public class pokedexController {
 	
 	@GetMapping("/getAll") // localhost:8080/getAll
 	public ResponseEntity<List<pokedex>>getAll() {
-		return new ResponseEntity<List<pokedex>>(service.getAll(),HttpStatus.OK);
-		
-		
+		return new ResponseEntity<List<pokedex>>(service.getAll(),HttpStatus.OK);	
 	}
+	
+	//Get by name(get one pokemon by name)
+	
+	@GetMapping("getByName/{name}") // localhost:8080/getByName/name
+	public ResponseEntity<pokedex> getByName(@PathVariable String name) {
+		return new ResponseEntity<pokedex>(service.getByName(name), HttpStatus.OK);
+		}
 	
 	
 	
