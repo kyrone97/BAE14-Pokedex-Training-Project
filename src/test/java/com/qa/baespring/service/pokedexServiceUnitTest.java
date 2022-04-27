@@ -77,6 +77,34 @@ public class pokedexServiceUnitTest {
 	}
 	
 	@Test
+	public void getByMoves() {
+		List<pokedex> output = new ArrayList<>();
+		output.add(new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric"));
+		List<pokedex> output1 = new ArrayList<>();
+		output1.add(new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric"));
+
+		Mockito.when(this.repo.findByMoves("Incinerate")).thenReturn(output);
+
+		assertEquals(output1, this.service.getByMoves("Incinerate"));
+
+		Mockito.verify(this.repo, Mockito.times(1)).findByMoves("Incinerate");
+	}
+	
+	@Test
+	public void getByWeakness() {
+		List<pokedex> output = new ArrayList<>();
+		output.add(new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric"));
+		List<pokedex> output1 = new ArrayList<>();
+		output1.add(new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric"));
+
+		Mockito.when(this.repo.findByWeakness("Electric")).thenReturn(output);
+
+		assertEquals(output1, this.service.getByWeakness("Electric"));
+
+		Mockito.verify(this.repo, Mockito.times(1)).findByWeakness("Electric");
+	}
+	
+	@Test
 	public void createTest() {
 		pokedex input = new pokedex("Charizard", "Incinerate", "Fire","Electric");
 		pokedex output = new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric");
