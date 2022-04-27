@@ -65,8 +65,18 @@ public class pokemonControllerIntergrationTest {
 		.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(content().json(outputAsJSON));
+				
+	}
+	
+	@Test
+	public void getByName()throws Exception {
+		pokedex pokemon = new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric");
+		String output1AsJSON = mapper.writeValueAsString(pokemon);
 		
-			
+		mvc.perform(get("/pokedex/getByName/Charizard")
+			.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().json(output1AsJSON));
 	}
 	
 	@Test
