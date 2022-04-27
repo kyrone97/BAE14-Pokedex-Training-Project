@@ -1,6 +1,7 @@
 package com.qa.baespring.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,45 @@ public class pokedexServiceUnitTest {
 	}
 	
 	
+	@Test
+	public void updateTest() {
+		pokedex input = new pokedex("Charizard", "Incinerate", "Fire","Electric");
+		Optional<pokedex> existing = Optional.of(new pokedex(1L, "Charizard", "Incinerate", "Fire","Electric"));
+		pokedex output = new pokedex(1L, "Charizard", "Incinerate", "Fire","Electric");
+
+		Mockito.when(this.repo.findById(1L)).thenReturn(existing);
+		Mockito.when(this.repo.saveAndFlush(output)).thenReturn(output);
+
+		assertEquals(output, this.service.update(1L, input));
+
+		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
+		Mockito.verify(this.repo, Mockito.times(1)).saveAndFlush(output);
+	}
 	
+	@Test
+	public void updateTestByName() {
+		pokedex input = new pokedex("Charizard", "Incinerate", "Fire","Electric");
+		Optional<pokedex> existing = Optional.of(new pokedex(1L, "Charizard", "Incinerate", "Fire","Electric"));
+		pokedex output = new pokedex(1L, "Charizard", "Incinerate", "Fire","Electric");
+
+		Mockito.when(this.repo.findByName("Charizard")).thenReturn(existing);
+		Mockito.when(this.repo.saveAndFlush(output)).thenReturn(output);
+
+		assertEquals(output, this.service.update("Charizard", input));
+
+		Mockito.verify(this.repo, Mockito.times(1)).findByName("Charizard");
+		Mockito.verify(this.repo, Mockito.times(1)).saveAndFlush(output);
+	
+	}
+	@Test
+	public void deleteTest() {
+		Mockito.when(this.repo.existsById(1L)).thenReturn(false);
+
+		assertTrue(this.service.delete(1L));
+
+		Mockito.verify(this.repo, Mockito.times(1)).deleteById(1L);
+		Mockito.verify(this.repo, Mockito.times(1)).existsById(1L);
+	}
 	
 	
 	
