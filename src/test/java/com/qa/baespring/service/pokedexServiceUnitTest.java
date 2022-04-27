@@ -50,6 +50,17 @@ public class pokedexServiceUnitTest {
 	}
 	
 	
+	@Test
+	public void createTest() {
+		pokedex input = new pokedex("Charizard", "Incinerate", "Fire","Electric");
+		pokedex output = new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric");
+
+		Mockito.when(this.repo.saveAndFlush(input)).thenReturn(output);
+
+		assertEquals(output, this.service.create(input));
+
+		Mockito.verify(this.repo, Mockito.times(1)).saveAndFlush(input);
+	}
 	
 	
 	
