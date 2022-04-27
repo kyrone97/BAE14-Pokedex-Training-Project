@@ -1,8 +1,12 @@
 package com.qa.baespring.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +34,8 @@ public class pokemonControllerIntergrationTest {
 	@Autowired
 	private ObjectMapper mapper;
 	
-	
-	@Test // test are void because they dont return anything
+	// Create test
+	@Test // test are void because they don't return anything
 	public void createTest() throws Exception {
 		
 	pokedex entry = new pokedex("Charizard", "Incinerate", "Fire","Electric");
@@ -48,7 +52,21 @@ public class pokemonControllerIntergrationTest {
 	
 	}
 	
-	
+	// Get All test
+	@Test
+	public void getAllTest() throws Exception{
+		pokedex pokemon = new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric");
+		List<pokedex> output = new ArrayList<>();
+		output.add(pokemon);
+		String outputAsJSON = mapper.writeValueAsString(output);
+		
+		mvc.perform(get("/pokedex/getAll")
+		.contentType(MediaType.APPLICATION_JSON))
+		.andExpect(status().isOk())
+		.andExpect(content().json(outputAsJSON));
+		
+			
+	}
 	
 	
 	
