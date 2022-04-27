@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.qa.baespring.domain.pokedex;
+import com.qa.baespring.exception.PokemonNotFoundException;
 import com.qa.baespring.repo.pokedexRepo;
 
 @Service
@@ -19,7 +20,7 @@ public class pokedexService {
 	// get by ID 
 		public pokedex getById(long id) {
 			//return repo.findById(id).get(); //.get will either get the user if exists or throw the exception no such element)
-			return repo.findById(id).get();
+			return repo.findById(id).orElseThrow(PokemonNotFoundException::new);
 		}
 	
 	//get ALL pokemon
