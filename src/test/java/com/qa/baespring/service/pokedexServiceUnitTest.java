@@ -50,6 +50,31 @@ public class pokedexServiceUnitTest {
 		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
 	}
 	
+	@Test
+	public void getByName() {
+		Optional<pokedex> OptionalOutput = Optional.of(new pokedex(1L, "Charizard", "Incinerate", "Fire","Electric"));
+		pokedex output = new pokedex(1L, "Charizard", "Incinerate", "Fire","Electric");
+
+		Mockito.when(this.repo.findByName("Charizard")).thenReturn(OptionalOutput);
+
+		assertEquals(output, this.service.getByName("Charizard"));
+
+		Mockito.verify(this.repo, Mockito.times(1)).findByName("Charizard");
+	}
+	
+	@Test
+	public void getByType() {
+		List<pokedex> output = new ArrayList<>();
+		output.add(new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric"));
+		List<pokedex> output1 = new ArrayList<>();
+		output1.add(new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric"));
+
+		Mockito.when(this.repo.findByType("Fire")).thenReturn(output);
+
+		assertEquals(output1, this.service.getByType("Fire"));
+
+		Mockito.verify(this.repo, Mockito.times(1)).findByType("Fire");
+	}
 	
 	@Test
 	public void createTest() {
