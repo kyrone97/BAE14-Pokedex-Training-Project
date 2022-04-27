@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.qa.baespring.domain.pokedex;
 import com.qa.baespring.exception.PokemonNotFoundException;
+import com.qa.baespring.exception.PokemonNotUpdatedException;
 import com.qa.baespring.repo.pokedexRepo;
 
 @Service
@@ -55,7 +56,7 @@ public class pokedexService {
 		
 	//update a pokemon by id
 		public pokedex update(long id, pokedex pokemon) {
-			pokedex existing = repo.findById(id).get(); //orElseThrow(UserNotUpdatedException::new); // get the existing user
+			pokedex existing = repo.findById(id).orElseThrow(PokemonNotUpdatedException::new); // get the existing user
 			existing.setName(pokemon.getName()); // change the pokemon name to new pokemon name
 			existing.setType(pokemon.getType()); // change existing pokemon type to new pokemon type
 			existing.setWeakness(pokemon.getWeakness()); // change existing pokemon weakness to new pokemon weakness
