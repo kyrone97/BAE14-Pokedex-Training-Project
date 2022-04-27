@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.qa.baespring.domain.pokedex;
+import com.qa.baespring.exception.PokemonDoesNotExistException;
 import com.qa.baespring.exception.PokemonNotFoundException;
 import com.qa.baespring.exception.PokemonNotUpdatedException;
 import com.qa.baespring.repo.pokedexRepo;
@@ -31,7 +32,7 @@ public class pokedexService {
 	
 	//get by name
 		public pokedex getByName(String name) {
-			return repo.findByName(name).get();
+			return repo.findByName(name).orElseThrow(PokemonDoesNotExistException::new);
 		}
 		
 	//get by type
