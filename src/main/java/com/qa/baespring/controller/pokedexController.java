@@ -76,7 +76,7 @@ public class pokedexController {
 	}
 	
 	// Put
-		@PutMapping("/update/{name}") // localhost:8080/update/name
+		@PutMapping("/update/name/{name}") // localhost:8080/update/name
 		public ResponseEntity<pokedex>update(@PathVariable String name, @RequestBody pokedex pokemon) {
 			return new ResponseEntity<pokedex>(service.update(name, pokemon),HttpStatus.CREATED);
 				

@@ -2,6 +2,7 @@ package com.qa.baespring.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -68,11 +69,48 @@ public class pokemonControllerIntergrationTest {
 			
 	}
 	
+	@Test
+	public void getById()throws Exception {
+		pokedex pokemon1 = new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric");
+		String output1AsJSON = mapper.writeValueAsString(pokemon1);
+		
+		mvc.perform(get("/pokedex/getById/1")
+			.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().json(output1AsJSON));
+	}
 	
 	
+	// update by ID test
+	@Test
+	public void updateTest() throws Exception {
+		pokedex pokemon2 = new pokedex("Charizard", "Incinerate", "Fire","Electric"); // Create a java object representing your update object
+		String output2AsJSON = mapper.writeValueAsString(pokemon2); // Convert that to JSON
+
+		pokedex result1 = new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric"); // Create a java object representing what you expect to get back
+		String resul1tAsJSON = mapper.writeValueAsString(result1); // Convert that to JSON
+
+		mvc.perform(put("/pokedex/update/1")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(output2AsJSON))
+				.andExpect(status().isCreated())
+				.andExpect(content().json(resul1tAsJSON));// Send your request and check for the right response code and content
+	}
 	
-	
-	
-	
+	//	update by name test
+	@Test
+	public void updateTestByName() throws Exception {
+		pokedex pokemon2 = new pokedex("Charizard", "Incinerate", "Fire","Electric"); // Create a java object representing your update object
+		String output2AsJSON = mapper.writeValueAsString(pokemon2); // Convert that to JSON
+
+		pokedex result1 = new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric"); // Create a java object representing what you expect to get back
+		String resul1tAsJSON = mapper.writeValueAsString(result1); // Convert that to JSON
+
+		mvc.perform(put("/pokedex/update/name/Charizard")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(output2AsJSON))
+				.andExpect(status().isCreated())
+				.andExpect(content().json(resul1tAsJSON));// Send your request and check for the right response code and content
+	}
 
 }
