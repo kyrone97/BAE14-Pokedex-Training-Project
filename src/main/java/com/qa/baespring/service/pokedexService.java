@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.qa.baespring.domain.pokedex;
+import com.qa.baespring.exception.PokemonDoesNotExistException;
+import com.qa.baespring.exception.PokemonNotFoundException;
+import com.qa.baespring.exception.PokemonNotUpdatedException;
 import com.qa.baespring.repo.pokedexRepo;
 
 @Service
@@ -19,7 +22,7 @@ public class pokedexService {
 	// get by ID 
 		public pokedex getById(long id) {
 			//return repo.findById(id).get(); //.get will either get the user if exists or throw the exception no such element)
-			return repo.findById(id).get();
+			return repo.findById(id).orElseThrow(PokemonNotFoundException::new);
 		}
 	
 	//get ALL pokemon
@@ -29,7 +32,7 @@ public class pokedexService {
 	
 	//get by name
 		public pokedex getByName(String name) {
-			return repo.findByName(name).get();
+			return repo.findByName(name).orElseThrow(PokemonDoesNotExistException::new);
 		}
 		
 	//get by type
@@ -54,7 +57,7 @@ public class pokedexService {
 		
 	//update a pokemon by id
 		public pokedex update(long id, pokedex pokemon) {
-			pokedex existing = repo.findById(id).get(); //orElseThrow(UserNotUpdatedException::new); // get the existing user
+			pokedex existing = repo.findById(id).orElseThrow(PokemonNotUpdatedException::new); // get the existing user
 			existing.setName(pokemon.getName()); // change the pokemon name to new pokemon name
 			existing.setType(pokemon.getType()); // change existing pokemon type to new pokemon type
 			existing.setWeakness(pokemon.getWeakness()); // change existing pokemon weakness to new pokemon weakness
