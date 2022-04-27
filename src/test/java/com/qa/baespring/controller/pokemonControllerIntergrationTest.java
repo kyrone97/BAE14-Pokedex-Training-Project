@@ -80,6 +80,46 @@ public class pokemonControllerIntergrationTest {
 			.andExpect(content().json(output1AsJSON));
 	}
 	
+	@Test
+	public void getByMoves()throws Exception {
+		pokedex pokemon = new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric");
+		pokedex[] pokedexarray = {pokemon};
+		String output1AsJSON = mapper.writeValueAsString(pokedexarray);
+		
+		
+		mvc.perform(get("/pokedex/getByMoves/Incinerate")
+			.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().json(output1AsJSON));
+	}
+	
+	@Test
+	public void getByType()throws Exception {
+		pokedex pokemon = new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric");
+		pokedex[] pokedexarray = {pokemon};
+		String output1AsJSON = mapper.writeValueAsString(pokedexarray);
+		
+		
+		mvc.perform(get("/pokedex/getByType/Fire")
+			.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().json(output1AsJSON));
+	
+	}
+	
+	@Test
+	public void getByWeakness()throws Exception {
+		pokedex pokemon = new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric");
+		pokedex[] pokedexarray = {pokemon};
+		String output1AsJSON = mapper.writeValueAsString(pokedexarray);
+		
+		
+		mvc.perform(get("/pokedex/getByWeakness/Electric")
+			.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(content().json(output1AsJSON));
+	
+	}
 	
 	@Test
 	public void getById()throws Exception {

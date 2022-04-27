@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -36,7 +37,17 @@ public class pokedexServiceUnitTest {
 		Mockito.verify(this.repo, Mockito.times(1)).findAll();
 	}
 
-	
+	@Test
+	public void getByIdTest() {
+		Optional<pokedex> OptionalOutput = Optional.of(new pokedex(1L, "Charizard", "Incinerate", "Fire","Electric"));
+		pokedex output = new pokedex(1L, "Charizard", "Incinerate", "Fire","Electric");
+
+		Mockito.when(this.repo.findById(1L)).thenReturn(OptionalOutput);
+
+		assertEquals(output, this.service.getById(1L));
+
+		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
+	}
 	
 	
 	
