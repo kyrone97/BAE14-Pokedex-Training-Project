@@ -1,5 +1,6 @@
 package com.qa.baespring.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -79,6 +80,7 @@ public class pokemonControllerIntergrationTest {
 			.andExpect(content().json(output1AsJSON));
 	}
 	
+	
 	@Test
 	public void getById()throws Exception {
 		pokedex pokemon1 = new pokedex(1L,"Charizard", "Incinerate", "Fire","Electric");
@@ -121,6 +123,16 @@ public class pokemonControllerIntergrationTest {
 				.content(output2AsJSON))
 				.andExpect(status().isCreated())
 				.andExpect(content().json(resul1tAsJSON));// Send your request and check for the right response code and content
+	}
+	
+
+	@Test
+	public void deleteTest() throws Exception {
+		// Send the request
+		// Check the response code is as expected (likely no content)
+		mvc.perform(delete("/pokedex/delete/1")
+			.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isNoContent());
 	}
 
 }
