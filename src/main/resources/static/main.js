@@ -87,25 +87,24 @@ async function updatePokemon(){
     });
 
 
-    const nameF = document.querySelector('#row-' + selectedPokemonId + "td:nth-child(2)");
-    const typeF = document.querySelector('#row-' + selectedPokemonId + "td:nth-child(3)");
-    const movesF = document.querySelector('#row-' + selectedPokemonId + "td:nth-child(4)");
-    const weaknessF = document.querySelector('#row-' + selectedPokemonId + "td:nth-child(5)");
-    const updateButtonField = document.querySelector('#row-' + selectedPokemonId + "td:nth-child(6) button:nth-child(1)");
+    // const nameF = document.querySelector('#row-' + selectedPokemonId + "td:nth-child(2)");
+    // const typeF = document.querySelector('#row-' + selectedPokemonId + "td:nth-child(3)");
+    // const movesF = document.querySelector('#row-' + selectedPokemonId + "td:nth-child(4)");
+    // const weaknessF = document.querySelector('#row-' + selectedPokemonId + "td:nth-child(5)");
+    // const updateButtonField = document.querySelector('#row-' + selectedPokemonId + "td:nth-child(6) button:nth-child(1)");
 
-    const pokemonUpdate = encodeURIComponent(JSON.stringify({id: selectedPokemonId, name, type, moves, weakness}));
+    // const pokemonUpdate = encodeURIComponent(JSON.stringify({id: selectedPokemonId, name, type, moves, weakness}));
 
-    updateButtonField.setAttribute('onclick', 'fillFormForUpdate("' + pokemonUpdate + '")');
+    // updateButtonField.setAttribute('onclick', 'fillFormForUpdate("' + pokemonUpdate + '")');
 
-    nameF.innerHTML = name;
-    typeF.innerHTML = type;
-    movesF.innerHTML = moves;
-    weaknessF.innerHTML = weakness;
+    // nameF.innerHTML = name;
+    // typeF.innerHTML = type;
+    // movesF.innerHTML = moves;
+    // weaknessF.innerHTML = weakness;
 
-    console.log (nameF,typeF,movesF,weaknessF);
-    closeModal();
+ closeModal();
 
-
+loadpokemon();
 }
 
 
